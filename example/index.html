@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>example</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+
+<body>
+    <div id="app">
+        <base-admin-element :filters="filters" :columns="columns" :requests="requests" />
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/3.0.2/vue-router.min.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="../dist/base-admin-element.umd.js"></script>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                filters: [
+                    { label: "标题", name: "title", element: "el-input" }
+                ],
+                columns: [
+                    { label: "序号", type: "index" },
+                    { label: "内容", prop: "content", element: "el-input" },
+                    { label: "标题", prop: "title", element: "el-input" },
+                    { label: "时间", prop: "newsTime", element: "el-date-picker" }
+                ],
+                requests: {
+                    r: {
+                        request: "http://114.132.217.39:8003/api/web/ch/news?language=ch&tabType=all", resolve: (res) => ({
+                            list: res.data.records,
+                            total: res.data.total
+                        })
+                    },
+                    c: { request: "news" },
+                    u: { request: "news" },
+                    d: { request: "news", urlParams: ['id'] },
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>
