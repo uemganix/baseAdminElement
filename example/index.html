@@ -31,7 +31,7 @@
                 ],
                 requests: {
                     r: {
-                        request: "http://114.132.217.39:8003/api/web/ch/news?language=ch&tabType=all", resolve: (res) => ({
+                        request: "http://47.100.114.6:8081/api/web/ch/news?tabType=all&pageNum=1&pageSize=10", resolve: (res) => ({
                             list: res.data.records,
                             total: res.data.total
                         })

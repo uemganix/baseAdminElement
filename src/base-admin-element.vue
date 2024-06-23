@@ -282,6 +282,18 @@
     },
     created() {
       this.getList();
+      const thisObj = this
+      request.interceptors.response.use(function (response) {
+        if (response.data) {
+          const code = response.data.code
+          if (code === 401) {
+            thisObj.$emit('failed')
+          }
+        }
+        return response;
+      }, function (error) {
+        return Promise.reject(error);
+      });
     },
     mounted() {
       const defaults = this.filters.filter(filter => filter.default)
@@ -372,7 +384,7 @@
             if (format.raw.type === "dict") {
               const source = format.raw.source
               const target = source.find(e => e.dictValue == cellValue)
-              return target.dictLabel || cellValue
+              return target && target.dictLabel || cellValue
             }
             if (format.raw.type === "joint") {
               // todo multiple by conditions
@@ -386,14 +398,14 @@
                 ? this.requests.s.label.po || "启用"
                 : this.requests.s.label.na || "禁用";
             }
-            if (format.raw.type === "anti-status") {
-              return cellValue && cellValue > 0
-                ? this.requests.s.label.na || "禁用"
-                : this.requests.s.label.po || "启用";
-            }
-            if (format.raw.type === "question") {
-              return cellValue === 1 ? "单选题" : "";
-            }
+            // if (format.raw.type === "anti-status") {
+            //   return cellValue && cellValue > 0
+            //     ? this.requests.s.label.na || "禁用"
+            //     : this.requests.s.label.po || "启用";
+            // }
+            // if (format.raw.type === "question") {
+            //   return cellValue === 1 ? "单选题" : "";
+            // }
           }
         }
         return cellValue;
@@ -472,9 +484,8 @@
         this.form = this.columns.reduce((acc, column) => {
           return { ...acc, [column.prop]: null };
         }, {});
-        {/* this.resetForm("form"); */ }
-        this.$refs["form"].resetFields();
-        {/* this.$emit("reset"); */ }
+        if (this.$refs["form"] !== undefined) // fix
+            this.$refs["form"].resetFields();
       },
       cancel() {
         this.open = false;
@@ -557,7 +568,8 @@
                 const resolvedPath = urlParams.map(item => this.form[item])
                 pathParams += resolvedPath.join('/')
               }
-              url = this.requests.u.request + pathParams;
+              // url = this.requests.u.request + pathParams;
+              url = this.requests.u.request
               method = this.requests.u.method || "put";
               msg = "修改成功";
             }
