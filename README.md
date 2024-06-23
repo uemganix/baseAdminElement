@@ -1,6 +1,6 @@
 # Base Admin Element
 
-> Table and Form Generator based on Element UI 2 ([中文](/README-zh.md).)
+> Table and Form Generator based on Element UI 2 ([中文](https://raw.githubusercontent.com/uemganix/baseAdminElement/main/README-zh.md).)
 
 - Automatically generate form
 - Automatically generate table query items
