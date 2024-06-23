@@ -10,7 +10,8 @@
 - Configurable custom slots
 
 > Example
-`
+
+```js
 <base-admin-element 
   :filters="[
     { label: "Title", name: "title", element: "el-input" },
@@ -34,7 +35,7 @@
     d: { request: "news", urlParams: ['id'] },
   }"
    />
-`
+```
 
 > Result
-![Table generated with form!](/assets/ss.PNG "Table generated with form")
+![Table generated with form!](https://raw.githubusercontent.com/uemganix/baseAdminElement/main/assets/ss.PNG "Table generated with form")

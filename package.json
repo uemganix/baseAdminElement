@@ -1,6 +1,6 @@
 {
   "name": "baseadminelement",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "vue component auto generate table and forms",
   "main": "dist/base-admin-element.umd.js",
   "module": "dist/base-admin-element.esm.js",

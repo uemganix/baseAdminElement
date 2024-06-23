@@ -9,7 +9,8 @@
 - 可配置自定义slot
 
 > 示例
-`
+
+```js
 <base-admin-element 
   :filters="[
     { label: "标题", name: "title", element: "el-input" }
@@ -32,7 +33,7 @@
     d: { request: "news", urlParams: ['id'] },
   }"
    />
-`
+```
 
 > Result
-![Table generated with form!](/assets/ss_zh.PNG "Table generated with form")
+![Table generated with form!](https://raw.githubusercontent.com/uemganix/baseAdminElement/main/assets/ss_zh.PNG "Table generated with form")
